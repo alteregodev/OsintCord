@@ -41,6 +41,7 @@ def load(bot: commands.Bot):
                 description=f'''
                     > User ID : `{user.id}`
                     > User display name : `{user.display_name}`
+                    > Is a bot : `{user.bot}`
                     > Profile accent color : `{user.accent_color}`
                     > User account created at : `{user.created_at.strftime('%Y-%m-%d %H:%M:%S')}`
                 '''
