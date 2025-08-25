@@ -29,7 +29,7 @@ def load(bot: commands.Bot):
     @bot.slash_command(description='Get information about a user')
     async def user_info(inter: disnake.ApplicationCommandInteraction, user_id):
         try:
-            user_id = int(user_id) # No, you can't just "user_id: int", because discord doesn't allow to pass big numbers as an argument for some reason
+            user_id = int(user_id.strip()) # No, you can't just "id: int", because discord doesn't allow to pass big numbers as an argument for some reason
         except TypeError:
             error_embed = await get_error_embed('Please enter a valid id')
             await inter.response.send_message(embed=error_embed, ephemeral=True)
@@ -55,6 +55,35 @@ def load(bot: commands.Bot):
 
         except disnake.NotFound:
             error_embed = await get_error_embed('Didn\'t find a user with such id')
+            await inter.response.send_message(embed=error_embed, ephemeral=True)
+
+    @bot.slash_command(description='Get information about a guild')
+    async def guild_info(inter: disnake.ApplicationCommandInteraction, guild_id):
+        try:
+            guild_id = int(guild_id.strip()) # No, you can't just "id: int", because discord doesn't allow to pass big numbers as an argument for some reason
+        except TypeError:
+            error_embed = await get_error_embed('Please enter a valid id')
+            await inter.response.send_message(embed=error_embed, ephemeral=True)
+
+        try:
+            guild = await bot.fetch_guild(guild_id)
+            embed = disnake.Embed(
+                title=f'Information about {guild.name}',
+                description=f'''
+                    > Guild ID : `{guild.id}`
+                    > Guild created at : `{guild.created_at.strftime('%Y-%m-%d %H:%M:%S')}`
+                '''
+            )
+            if guild.icon:
+                embed.set_thumbnail(url=guild.icon.url)
+
+            if guild.banner:
+                embed.set_image(url=guild.banner.url)
+
+            await inter.response.send_message(embed=embed)
+
+        except disnake.NotFound:
+            error_embed = await get_error_embed('Didn\'t find a guild with such id (usually this means I am not in this guild)')
             await inter.response.send_message(embed=error_embed, ephemeral=True)
 
     @bot.slash_command(description='Get information about the bot')
