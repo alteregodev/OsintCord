@@ -84,7 +84,7 @@ def load(bot: commands.Bot):
             await inter.response.send_message(embed=error_embed, ephemeral=True)
 
     @bot.slash_command(description='Get information about an ip address')
-    async def ipinfo(inter: disnake.ApplicationCommandInteraction, ip):
+    async def ipinfo(inter: disnake.ApplicationCommandInteraction, ip: str):
         ip = ip.strip()
         if not await is_valid_ip(ip):
             error_embed = await get_error_embed('Please provide a valid IPv4 address')
@@ -113,6 +113,28 @@ def load(bot: commands.Bot):
 
         await inter.response.send_message(embed=embed)
 
+    @bot.slash_command(description='Get information about a phone number')
+    async def phoneinfo(inter: disnake.ApplicationCommandInteraction, number: str):
+        number = number.strip()
+        
+        data = await check_phone_number(number)
+        if not data:
+            error_embed = await get_error_embed('An error occured while getting information about a phone number, check if it is valid')
+            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            return
+
+        embed = disnake.Embed(
+            title=f'Information about {number}',
+            description=f'''
+                > Geolocation : `{data['geolocation']}`
+                > Carrier : `{data['carrier'] if data['carrier'] else 'Not found'}`
+                > Country code : `{data['country_code']}`
+                > Is valid : `{data['is_valid']}`
+            '''
+        )
+
+        await inter.response.send_message(embed=embed)
+
     @bot.slash_command(description='Get information about the bot')
     async def about(inter: disnake.ApplicationCommandInteraction):
         version = await get_file_content('.version')
@@ -129,3 +151,4 @@ def load(bot: commands.Bot):
             embed.set_thumbnail(url=bot.user.avatar.url)
 
         await inter.response.send_message(embed=embed)
+
