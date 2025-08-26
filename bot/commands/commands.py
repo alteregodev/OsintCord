@@ -3,14 +3,9 @@ import datetime
 import aiofiles
 from disnake.ext import commands
 
-def load(bot: commands.Bot):
-    async def get_error_embed(error: str):
-        embed = disnake.Embed(
-            title='Error',
-            description=error
-        )
-        return embed
+from utils.utils import *
 
+def load(bot: commands.Bot):
     @bot.event
     async def on_ready():
         current_time = datetime.datetime.now()
@@ -89,9 +84,7 @@ def load(bot: commands.Bot):
 
     @bot.slash_command(description='Get information about the bot')
     async def about(inter: disnake.ApplicationCommandInteraction):
-        async with aiofiles.open('.version', 'r') as f:
-            version = await f.read()
-
+        version = await get_file_content('.version')
         embed = disnake.Embed(
             title=f'OsintCord {version}',
             description='''
@@ -101,6 +94,7 @@ def load(bot: commands.Bot):
                 **🔎 Thank you for using OsintCord!**
             '''
         )
-        embed.set_thumbnail(url=bot.user.avatar.url)
+        if bot.user.avatar:
+            embed.set_thumbnail(url=bot.user.avatar.url)
 
         await inter.response.send_message(embed=embed)
