@@ -12,7 +12,7 @@ def load(bot: commands.Bot):
         current_time = datetime.datetime.now()
 
         print(f'\nLogged in as {bot.user}')
-        print(f'Current time: {current_time.strftime('%Y-%m-%d %H:%M:%S')}')
+        print(f'Current time: {current_time.strftime("%Y-%m-%d %H:%M:%S")}')
 
     @bot.slash_command(description='Check bot\'s latency')
     async def ping(inter: disnake.ApplicationCommandInteraction):
@@ -39,7 +39,7 @@ def load(bot: commands.Bot):
                     > User display name : `{user.display_name}`
                     > Is a bot : `{user.bot}`
                     > Profile accent color : `{user.accent_color}`
-                    > User account created at : `{user.created_at.strftime('%Y-%m-%d %H:%M:%S')}`
+                    > User account created at : `{user.created_at.strftime("%Y-%m-%d %H:%M:%S")}`
                 '''
             )
             if user.avatar:
@@ -68,7 +68,7 @@ def load(bot: commands.Bot):
                 title=f'Information about {guild.name}',
                 description=f'''
                     > Guild ID : `{guild.id}`
-                    > Guild created at : `{guild.created_at.strftime('%Y-%m-%d %H:%M:%S')}`
+                    > Guild created at : `{guild.created_at.strftime("%Y-%m-%d %H:%M:%S")}`
                 '''
             )
             if guild.icon:
@@ -100,14 +100,14 @@ def load(bot: commands.Bot):
         embed = disnake.Embed(
             title=f'Information about {ip}',
             description=f'''
-                > Hostname : `{data['hostname']}`
-                > City : `{data['city']}`
-                > Region : `{data['region']}`
-                > Country : `{data['country']}`
-                > Coordinates : `{data['loc']}`
-                > Organization : `{data['org']}`
-                > Postal : `{data['postal']}`
-                > Timezone : `{data['timezone']}`
+                > Hostname : `{data["hostname"]}`
+                > City : `{data["city"]}`
+                > Region : `{data["region"]}`
+                > Country : `{data["country"]}`
+                > Coordinates : `{data["loc"]}`
+                > Organization : `{data["org"]}`
+                > Postal : `{data["postal"]}`
+                > Timezone : `{data["timezone"]}`
             '''
         )
 
@@ -126,10 +126,10 @@ def load(bot: commands.Bot):
         embed = disnake.Embed(
             title=f'Information about {number}',
             description=f'''
-                > Geolocation : `{data['geolocation']}`
-                > Carrier : `{data['carrier'] if data['carrier'] else 'Not found'}`
-                > Country code : `{data['country_code']}`
-                > Is valid : `{data['is_valid']}`
+                > Geolocation : `{data["geolocation"]}`
+                > Carrier : `{data["carrier"] if data["carrier"] else "Not found"}`
+                > Country code : `{data["country_code"]}`
+                > Is valid : `{data["is_valid"]}`
             '''
         )
 

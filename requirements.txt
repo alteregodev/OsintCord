@@ -1,4 +1,5 @@
 phonenumbers
+python-dotenv
 disnake
 aiofiles
 aiohttp
