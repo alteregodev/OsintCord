@@ -126,7 +126,7 @@ def load(bot: commands.Bot):
         embed = disnake.Embed(
             title=f'Information about {number}',
             description=f'''
-                > Geolocation : `{data["geolocation"]}`
+                > Geolocation : `{data["geolocation"] if data["geolocation"] else "Not found"}`
                 > Carrier : `{data["carrier"] if data["carrier"] else "Not found"}`
                 > Country code : `{data["country_code"]}`
                 > Is valid : `{data["is_valid"]}`
