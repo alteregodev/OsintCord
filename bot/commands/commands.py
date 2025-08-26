@@ -156,6 +156,7 @@ def load(bot: commands.Bot):
             title=f'Available commands',
             description='''
                 > `/about` - Get information about the bot
+                > `/ping` - Check bot\'s latency
                 > `/help` - Display this message 
                 > `/ipinfo` - Get information about an ip address
                 > `/phoneinfo` - Get informaton about a phone number
