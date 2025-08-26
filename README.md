@@ -2,9 +2,9 @@
 
 🔎 OsintCord is a powerful discord bot made for OSINT investigations and retrieving information about user profiles or guilds
 
-![GitHub stars](https://img.shields.io/github/stars/username/repository?style=social)
-![GitHub issues](https://img.shields.io/github/issues/username/repository)
-![GitHub license](https://img.shields.io/github/license/username/repository)
+![GitHub stars](https://img.shields.io/github/stars/alteregodev/OsintCord?style=social)
+![GitHub issues](https://img.shields.io/github/issues/alteregodev/OsintCord)
+![GitHub license](https://img.shields.io/github/license/alteregodev/OsintCord)
 
 ---
 
