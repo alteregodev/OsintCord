@@ -150,5 +150,22 @@ def load(bot: commands.Bot):
         if bot.user.avatar:
             embed.set_thumbnail(url=bot.user.avatar.url)
 
+    @bot.slash_command(description='Get information about the bot')
+    async def help(inter: disnake.ApplicationCommandInteraction):
+        embed = disnake.Embed(
+            title=f'Available commands',
+            description='''
+                > `/about` - Get information about the bot
+                > `/help` - Display this message 
+                > `/ipinfo` - Get information about an ip address
+                > `/phoneinfo` - Get informaton about a phone number
+                > `/guild_info` - Get information about a guild
+                > `/user_info` - Get information about a user
+                **🔎 Thank you for using OsintCord!**
+            '''
+        )
+        if bot.user.avatar:
+            embed.set_thumbnail(url=bot.user.avatar.url)
+
         await inter.response.send_message(embed=embed)
 

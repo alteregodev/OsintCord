@@ -18,7 +18,7 @@ async def check_ip(ip):
                     return {}
 
     except Exception as e:
-        print('Error:', e)
+        print('Error in check_ip():', e)
         return {}
 
 async def check_phone_number(number):
@@ -37,5 +37,5 @@ async def check_phone_number(number):
             'is_valid': is_valid
         }
     except Exception as e:
-        print('Error:', e)
+        print('Error in check_phone_number():', e)
         return {}
