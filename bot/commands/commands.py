@@ -90,7 +90,7 @@ def load(bot: commands.Bot):
             error_embed = await get_error_embed('Please provide a valid IPv4 address')
             await inter.response.send_message(embed=error_embed, ephemeral=True)
             return
-        
+
         data = await check_ip(ip)
         if not data:
             error_embed = await get_error_embed('An error occured while getting information about an ip address')
@@ -116,7 +116,7 @@ def load(bot: commands.Bot):
     @bot.slash_command(description='Get information about a phone number')
     async def phoneinfo(inter: disnake.ApplicationCommandInteraction, number: str):
         number = number.strip()
-        
+
         data = await check_phone_number(number)
         if not data:
             error_embed = await get_error_embed('An error occured while getting information about a phone number, check if it is valid')
