@@ -4,6 +4,7 @@ import aiofiles
 from disnake.ext import commands
 
 from utils.utils import *
+from modules.modules import *
 
 def load(bot: commands.Bot):
     @bot.event
@@ -81,6 +82,35 @@ def load(bot: commands.Bot):
         except disnake.NotFound:
             error_embed = await get_error_embed('Didn\'t find a guild with such id (usually this means I am not in this guild)')
             await inter.response.send_message(embed=error_embed, ephemeral=True)
+
+    @bot.slash_command(description='Get information about an ip address')
+    async def ipinfo(inter: disnake.ApplicationCommandInteraction, ip):
+        if not await is_valid_ip(ip):
+            error_embed = await get_error_embed('Please provide a valid IPv4 address')
+            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            return
+        
+        data = await check_ip(ip)
+        if not data:
+            error_embed = await get_error_embed('An error occured while getting information about an ip address')
+            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            return
+
+        embed = disnake.Embed(
+            title=f'Information about {ip}',
+            description=f'''
+                > Hostname : `{data['hostname']}`
+                > City : `{data['city']}`
+                > Region : `{data['region']}`
+                > Country : `{data['country']}`
+                > Coordinates : `{data['loc']}`
+                > Organization : `{data['org']}`
+                > Postal : `{data['postal']}`
+                > Timezone : `{data['timezone']}`
+            '''
+        )
+
+        await inter.response.send_message(embed=embed)
 
     @bot.slash_command(description='Get information about the bot')
     async def about(inter: disnake.ApplicationCommandInteraction):

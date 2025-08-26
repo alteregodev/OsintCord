@@ -1,4 +1,4 @@
-import json
+import re
 import disnake
 import aiofiles
 from disnake.ext import commands
@@ -18,19 +18,6 @@ async def get_file_content(filename):
     except Exception as e:
         print('Error:', e)
 
-async def load_json_file(filename):
-    try:
-        async with aiofiles.open(filename, 'r') as f:
-            json_str = await f.read()
-            data = json.loads(json_str)
-        return data
-    except Exception as e:
-        print('Error:', e)
-
-async def dump_json_to_file(filename, data):
-    try:
-        async with aiofiles.open(filename, 'w') as f:
-            json_str = json.dumps(data, indent=4)
-            await f.write(json_str)
-    except Exception as e:
-        print('Error:', e)
+async def is_valid_ip(ip):
+    pattern = re.compile(r'^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
+    return bool(pattern.fullmatch(ip))
