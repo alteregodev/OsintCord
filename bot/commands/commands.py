@@ -85,6 +85,7 @@ def load(bot: commands.Bot):
 
     @bot.slash_command(description='Get information about an ip address')
     async def ipinfo(inter: disnake.ApplicationCommandInteraction, ip):
+        ip = ip.strip()
         if not await is_valid_ip(ip):
             error_embed = await get_error_embed('Please provide a valid IPv4 address')
             await inter.response.send_message(embed=error_embed, ephemeral=True)
