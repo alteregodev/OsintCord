@@ -150,6 +150,8 @@ def load(bot: commands.Bot):
         if bot.user.avatar:
             embed.set_thumbnail(url=bot.user.avatar.url)
 
+        await inter.response.send_message(embed=embed)
+
     @bot.slash_command(description='Get information about the bot')
     async def help(inter: disnake.ApplicationCommandInteraction):
         embed = disnake.Embed(
