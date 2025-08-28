@@ -97,17 +97,30 @@ def load(bot: commands.Bot):
             await inter.response.send_message(embed=error_embed, ephemeral=True)
             return
 
+        try:
+            hostname = data['hostname']
+        except KeyError:
+            hostname = 'Not found'
+
+        city = data['city']
+        region = data['region']
+        postal = data['postal']
+        country = data['country']
+        coordinates = data['loc']
+        organization = data['org']
+        timezone = data['timezone']
+
         embed = disnake.Embed(
             title=f'Information about {ip}',
             description=f'''
-                > Hostname : `{data["hostname"] if data["hostname"] else "Not found"}`
-                > City : `{data["city"]}`
-                > Region : `{data["region"]}`
-                > Country : `{data["country"]}`
-                > Coordinates : `{data["loc"]}`
-                > Organization : `{data["org"]}`
-                > Postal : `{data["postal"]}`
-                > Timezone : `{data["timezone"]}`
+                > Hostname : `{hostname}`
+                > City : `{city}`
+                > Region : `{region}`
+                > Country : `{country}`
+                > Coordinates : `{coordinates}`
+                > Organization : `{organization}`
+                > Postal : `{postal}`
+                > Timezone : `{timezone}`
             '''
         )
 
@@ -123,13 +136,18 @@ def load(bot: commands.Bot):
             await inter.response.send_message(embed=error_embed, ephemeral=True)
             return
 
+        geolocation = data['geolocation'] if data['geolocation'] else 'Not found'
+        carrier = data['carrier'] if data['carrier'] else 'Not found'
+        country_code = data['country_code']
+        is_valid = data['country_code']
+
         embed = disnake.Embed(
             title=f'Information about {number}',
             description=f'''
-                > Geolocation : `{data["geolocation"] if data["geolocation"] else "Not found"}`
-                > Carrier : `{data["carrier"] if data["carrier"] else "Not found"}`
-                > Country code : `{data["country_code"]}`
-                > Is valid : `{data["is_valid"]}`
+                > Geolocation : `{geolocation}`
+                > Carrier : `{carrier}`
+                > Country code : `{country_code}`
+                > Is valid : `{is_valid}`
             '''
         )
 
