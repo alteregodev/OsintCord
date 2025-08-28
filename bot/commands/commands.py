@@ -100,7 +100,7 @@ def load(bot: commands.Bot):
         embed = disnake.Embed(
             title=f'Information about {ip}',
             description=f'''
-                > Hostname : `{data["hostname"]}`
+                > Hostname : `{data["hostname"] if data["hostname"] else "Not found"}`
                 > City : `{data["city"]}`
                 > Region : `{data["region"]}`
                 > Country : `{data["country"]}`
