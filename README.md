@@ -18,5 +18,5 @@
 - `cd OsintCord`
 - `pip install -r requirements.txt` - Install the dependencies
 - `cd bot`
-- `echo "BOT_TOKEN=<YOUR_BOT_TOKEN_HERE>" > .env` - Set your bot token 
+- `echo "BOT_TOKEN=<YOUR_BOT_TOKEN_HERE>" > .env` - Set your bot token (replace <YOUR_BOT_TOKEN_HERE> with your actual bot's token)
 - `python core.py` - Start the bot
