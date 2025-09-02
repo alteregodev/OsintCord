@@ -3,12 +3,12 @@ import disnake
 import aiofiles
 from disnake.ext import commands
 
-async def get_error_embed(error: str):
+async def send_error_embed(error: str, inter):
         embed = disnake.Embed(
             title='Error',
             description=error
         )
-        return embed
+        await inter.response.send_message(ephemeral=True, embed=embed)
 
 async def get_file_content(filename):
     try:

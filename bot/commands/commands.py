@@ -27,8 +27,7 @@ def load(bot: commands.Bot):
         try:
             user_id = int(user_id.strip()) # No, you can't just "id: int", because discord doesn't allow to pass big numbers as an argument for some reason
         except TypeError:
-            error_embed = await get_error_embed('Please enter a valid id')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            await send_error_embed('Please enter a valid id', inter)
 
         try:
             user = await bot.fetch_user(user_id)
@@ -51,16 +50,14 @@ def load(bot: commands.Bot):
             await inter.response.send_message(embed=embed)
 
         except disnake.NotFound:
-            error_embed = await get_error_embed('Didn\'t find a user with such id')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            await send_error_embed('Didn\'t find a user with such id', inter)
 
     @bot.slash_command(description='Get information about a guild')
     async def guild_info(inter: disnake.ApplicationCommandInteraction, guild_id):
         try:
             guild_id = int(guild_id.strip()) # No, you can't just "id: int", because discord doesn't allow to pass big numbers as an argument for some reason
         except TypeError:
-            error_embed = await get_error_embed('Please enter a valid id')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            await send_error_embed('Please enter a valid id', inter)
 
         try:
             guild = await bot.fetch_guild(guild_id)
@@ -80,21 +77,17 @@ def load(bot: commands.Bot):
             await inter.response.send_message(embed=embed)
 
         except disnake.NotFound:
-            error_embed = await get_error_embed('Didn\'t find a guild with such id (usually this means I am not in this guild)')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
-
+            await send_error_embed('Didn\'t find a guild with such id (usually this means I am not in this guild)', inter)
     @bot.slash_command(description='Get information about an ip address')
     async def ipinfo(inter: disnake.ApplicationCommandInteraction, ip: str):
         ip = ip.strip()
         if not await is_valid_ip(ip):
-            error_embed = await get_error_embed('Please provide a valid IPv4 address')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            await send_error_embed('Please provide a valid IPv4 address', inter)
             return
 
         data = await check_ip(ip)
         if not data:
-            error_embed = await get_error_embed('An error occured while getting information about an ip address')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            await send_error_embed('An error occured while getting information about an IP address', inter)
             return
 
         try:
@@ -132,8 +125,7 @@ def load(bot: commands.Bot):
 
         data = await check_phone_number(number)
         if not data:
-            error_embed = await get_error_embed('An error occured while getting information about a phone number, check if it is valid')
-            await inter.response.send_message(embed=error_embed, ephemeral=True)
+            await send_error_embed('An error occured while getting information about a phone number, check if it is valid', inter)
             return
 
         geolocation = data['geolocation'] if data['geolocation'] else 'Not found'
