@@ -6,9 +6,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/alteregodev/OsintCord)
 ![GitHub license](https://img.shields.io/github/license/alteregodev/OsintCord)
 
-> To add OsintCord bot to your server, you can use this [link](https://discord.com/oauth2/authorize?client_id=1409515456221417554&permissions=277025647680&integration_type=0&scope=bot)
-
-> Official OsintCord bot does not log your search queries nor collects information about it's users, if you don't trust it, you can setup the bot yourself using the instructions provided at the bottom of this readme
+> ⚠️ *As of September 2025, the official bot is not maintained. The reason is that I have lost access to my discord account, which owns the bot. If you want to use the bot, you need to set it up yourself, following the instructions provided at the bottom of this README. This repository will still be maintained though.*
 
 ---
 
@@ -18,5 +16,5 @@
 - `cd OsintCord`
 - `pip install -r requirements.txt` - Install the dependencies
 - `cd bot`
-- `echo "BOT_TOKEN=<YOUR_BOT_TOKEN_HERE>" > .env` - Set your bot token (replace <YOUR_BOT_TOKEN_HERE> with your actual bot's token)
+- `echo "BOT_TOKEN=<YOUR_BOT_TOKEN_HERE>" > .env` - Set your bot token (replace <YOUR_BOT_TOKEN_HERE> with your actual bot's token). You can create a bot and get it's token at discord.com/developers/application
 - `python core.py` - Start the bot
