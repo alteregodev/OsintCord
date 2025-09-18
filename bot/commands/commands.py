@@ -172,7 +172,7 @@ def load(bot: commands.Bot):
                 > `/help` - Display this message 
                 > `/ipinfo` - Get information about an ip address
                 > `/phoneinfo` - Get informaton about a phone number
-                > `/guild_info` - Get information about a guild
+                > `/guild_info` - Get information about a guild (works only if bot is in this guild)
                 > `/user_info` - Get information about a user
                 **🔎 Thank you for using OsintCord!**
             '''
