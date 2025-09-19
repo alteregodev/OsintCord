@@ -23,7 +23,7 @@ def load(bot: commands.Bot):
         await inter.response.send_message(embed=embed)
 
     @bot.slash_command(description='Get information about a user')
-    async def user_info(inter: disnake.ApplicationCommandInteraction, user_id):
+    async def user(inter: disnake.ApplicationCommandInteraction, user_id):
         try:
             user_id = int(user_id.strip()) # No, you can't just "id: int", because discord doesn't allow to pass big numbers as an argument for some reason
         except TypeError:
@@ -53,7 +53,7 @@ def load(bot: commands.Bot):
             await send_error_embed('Didn\'t find a user with such id', inter)
 
     @bot.slash_command(description='Get information about a guild')
-    async def guild_info(inter: disnake.ApplicationCommandInteraction, guild_id):
+    async def guild(inter: disnake.ApplicationCommandInteraction, guild_id):
         try:
             guild_id = int(guild_id.strip()) # No, you can't just "id: int", because discord doesn't allow to pass big numbers as an argument for some reason
         except TypeError:
@@ -79,7 +79,7 @@ def load(bot: commands.Bot):
         except disnake.NotFound:
             await send_error_embed('Didn\'t find a guild with such id (usually this means I am not in this guild)', inter)
     @bot.slash_command(description='Get information about an ip address')
-    async def ipinfo(inter: disnake.ApplicationCommandInteraction, ip: str):
+    async def ip(inter: disnake.ApplicationCommandInteraction, ip: str):
         ip = ip.strip()
         if not await is_valid_ip(ip):
             await send_error_embed('Please provide a valid IPv4 address', inter)
@@ -120,7 +120,7 @@ def load(bot: commands.Bot):
         await inter.response.send_message(embed=embed)
 
     @bot.slash_command(description='Get information about a phone number')
-    async def phoneinfo(inter: disnake.ApplicationCommandInteraction, number: str):
+    async def phone(inter: disnake.ApplicationCommandInteraction, number: str):
         number = number.strip()
 
         data = await check_phone_number(number)
@@ -154,7 +154,7 @@ def load(bot: commands.Bot):
                 > Developer - [GitHub](https://github.com/alteregodev)
                 > Made with - `Python, Disnake, Love <3`
                 > Bot\'s GitHub - [GitHub Repo](https://github.com/alteregodev/OsintCord)
-                **🔎 Thank you for using OsintCord!**
+                **🔎 Thank you for using OsintCord*
             '''
         )
         if bot.user.avatar:
@@ -170,10 +170,10 @@ def load(bot: commands.Bot):
                 > `/about` - Get information about the bot
                 > `/ping` - Check bot\'s latency
                 > `/help` - Display this message 
-                > `/ipinfo` - Get information about an ip address
-                > `/phoneinfo` - Get informaton about a phone number
-                > `/guild_info` - Get information about a guild (works only if bot is in this guild)
-                > `/user_info` - Get information about a user
+                > `/ip` - Get information about an ip address
+                > `/phone` - Get informaton about a phone number
+                > `/guild` - Get information about a guild (works only if bot is in this guild)
+                > `/user` - Get information about a user
                 **🔎 Thank you for using OsintCord!**
             '''
         )
